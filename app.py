@@ -75,8 +75,10 @@ df.columns = df.columns.str.strip()
 df = df[df["lat"] != ""]
 df = df[df["lon"] != ""]
 
-df["lat"] = df["lat"].astype(float)
-df["lon"] = df["lon"].astype(float)
+df["lat"] = pd.to_numeric(df["lat"], errors="coerce")
+df["lon"] = pd.to_numeric(df["lon"], errors="coerce")
+
+df = df.dropna(subset=["lat", "lon"])
 
 # Fix spacing and capitalization
 df["danger_level"] = df["danger_level"].astype(str).str.strip().str.capitalize()
