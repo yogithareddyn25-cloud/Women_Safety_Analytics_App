@@ -56,7 +56,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(
 
 client = gspread.authorize(creds)
 
-sheet = client.open("Women Safety Data").sheet1)
+sheet = client.open("Women Safety Data").sheet1
 
 client = gspread.authorize(creds)
 
