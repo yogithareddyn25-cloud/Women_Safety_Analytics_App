@@ -36,10 +36,27 @@ scope = [
 "https://www.googleapis.com/auth/drive"
 ]
 
+# -------------------------
+# GOOGLE SHEETS CONNECTION
+# -------------------------
+
+import json
+
+scope = [
+"https://spreadsheets.google.com/feeds",
+"https://www.googleapis.com/auth/drive"
+]
+
+creds_dict = json.loads(st.secrets["gcp_service_account"])
+
 creds = ServiceAccountCredentials.from_json_keyfile_dict(
-    st.secrets["gcp_service_account"],
+    creds_dict,
     scope
 )
+
+client = gspread.authorize(creds)
+
+sheet = client.open("Women Safety Data").sheet1)
 
 client = gspread.authorize(creds)
 
